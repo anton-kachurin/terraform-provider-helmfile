@@ -30,6 +30,7 @@ const KeyDirty = "dirty"
 const KeyConcurrency = "concurrency"
 const KeyReleasesValues = "releases_values"
 const KeySkipDiffOnMissingFiles = "skip_diff_on_missing_files"
+const KeyKubeconfig = "kubeconfig"
 
 const HelmfileDefaultPath = "helmfile.yaml"
 
@@ -290,7 +291,7 @@ func resourceReleaseSetDiff(d *schema.ResourceDiff, meta interface{}) (finalErr 
 			// If the kubeconfig_path is not empty AND the file is in-existent, we may safely say that
 			// the path is static but the file is not yet generated.
 			// In code below, `info == nil` or `os.IsNotExist(err)` means that the file is in-existent.
-			if info, _ := os.Stat(*kubeconfig); info != nil {
+			if info, _ := os.Stat(*kubeconfig); info == nil {
 				return fmt.Errorf("diffing release set: %w", err)
 			}
 		} else if !strings.Contains(err.Error(), "Kubernetes cluster unreachable") {
