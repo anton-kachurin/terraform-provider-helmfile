@@ -30,7 +30,6 @@ const KeyDirty = "dirty"
 const KeyConcurrency = "concurrency"
 const KeyReleasesValues = "releases_values"
 const KeySkipDiffOnMissingFiles = "skip_diff_on_missing_files"
-const KeyKubeconfig = "kubeconfig"
 
 const HelmfileDefaultPath = "helmfile.yaml"
 
